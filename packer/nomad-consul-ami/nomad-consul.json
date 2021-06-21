@@ -120,13 +120,13 @@
     },
     {
       "type": "shell",
-      "inline": ["mkdir -p /tmp/terraform-aws-nomad"],
+      "inline": ["mkdir -p /tmp/Hashistack-ami-build"],
       "pause_before": "30s"
     },
     {
       "type": "file",
       "source": "{{template_dir}}/../../",
-      "destination": "/tmp/terraform-aws-nomad"
+      "destination": "/tmp/Hashistack-ami-build"
     },
       {
       "type": "shell",
