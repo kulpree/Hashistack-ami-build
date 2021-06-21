@@ -211,9 +211,9 @@ function fetch_binary {
     download_url="https://releases.hashicorp.com/consul/${version}/consul_${version}_linux_${binary_arch}.zip"
   fi
 
-  retry \
-    curl -o "$DOWNLOAD_PACKAGE_PATH" "$download_url" \
-    "Downloading Consul to $DOWNLOAD_PACKAGE_PATH"
+  "Downloading Consul to $DOWNLOAD_PACKAGE_PATH"
+  curl -o "$DOWNLOAD_PACKAGE_PATH" "$download_url" 
+    
 }
 
 function install_binary {
