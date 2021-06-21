@@ -11,7 +11,7 @@ set -e
 
 readonly DEFAULT_INSTALL_PATH="/opt/consul"
 readonly DEFAULT_CONSUL_USER="consul"
-readonly DOWNLOAD_PACKAGE_PATH="/tmp/consul.zip"
+local readonly DOWNLOAD_PACKAGE_PATH="/tmp/consul.zip"
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly SYSTEM_BIN_DIR="/usr/local/bin"
@@ -208,7 +208,7 @@ function fetch_binary {
     esac
 
   if [[ -z "$download_url" && -n "$version" ]]; then
-    download_url="https://releases.hashicorp.com/consul/${version}/consul_${version}_linux_${binary_arch}.zip"
+    local readonly download_url="https://releases.hashicorp.com/consul/${version}/consul_${version}_linux_${binary_arch}.zip"
   fi
 
   "Downloading Consul to $DOWNLOAD_PACKAGE_PATH"
