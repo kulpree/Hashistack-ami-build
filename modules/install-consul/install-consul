@@ -11,7 +11,7 @@ set -e
 
 readonly DEFAULT_INSTALL_PATH="/opt/consul"
 readonly DEFAULT_CONSUL_USER="consul"
-local readonly DOWNLOAD_PACKAGE_PATH="/tmp/consul.zip"
+readonly DOWNLOAD_PACKAGE_PATH="/tmp/consul.zip"
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly SYSTEM_BIN_DIR="/usr/local/bin"
