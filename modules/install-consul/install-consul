@@ -208,12 +208,12 @@ function fetch_binary {
     esac
 
   if [[ -z "$download_url" && -n "$version" ]]; then
-    local readonly download_url="https://releases.hashicorp.com/consul/${version}/consul_${version}_linux_${binary_arch}.zip"
+    download_url="https://releases.hashicorp.com/consul/${version}/consul_${version}_linux_${binary_arch}.zip"
   fi
 
-  "Downloading Consul to $DOWNLOAD_PACKAGE_PATH"
-  curl -o "$DOWNLOAD_PACKAGE_PATH" "$download_url" 
-    
+  retry \
+    "curl -o '$DOWNLOAD_PACKAGE_PATH' '$download_url' --location --silent --fail --show-error" \
+    "Downloading Consul to $DOWNLOAD_PACKAGE_PATH"
 }
 
 function install_binary {
