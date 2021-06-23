@@ -19,7 +19,7 @@ jobs:
         with:
           command: validate
           arguments: -syntax-only
-          target: packer/nomad-consul-ami/nomad-consul.json
+          target: packer/nomad-consul-ami/nomad-consul-uswest2.json
 
       # build artifact
       - name: Packer AMI Build
