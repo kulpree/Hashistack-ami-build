@@ -1,0 +1,30 @@
+name: NOMAD-CONSUL AMI
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  consul-ami-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+      # validate templates
+      - name: Validate Template
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: validate
+          arguments: -syntax-only
+          target: packer/nomad-consul-ami/nomad-consul.json
+
+      # build artifact
+      - name: Packer AMI Build
+        uses: zmingxie/packer-ami-builder@v0.4
+        with:
+          packerVersion: '1.7.3'
+          packerArgs: 'build nomad-consul.json'
+          workDir: 'packer/nomad-consul-ami'
