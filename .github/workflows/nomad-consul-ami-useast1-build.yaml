@@ -26,5 +26,5 @@ jobs:
         uses: zmingxie/packer-ami-builder@v0.4
         with:
           packerVersion: '1.7.3'
-          packerArgs: 'build nomad-consul.json'
+          packerArgs: 'build nomad-consul-useast1.json'
           workDir: 'packer/nomad-consul-ami'
