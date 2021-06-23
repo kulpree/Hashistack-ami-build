@@ -24,7 +24,7 @@
          "root-device-type": "ebs"
        },
        "owners": [
-         "amazon"
+         "099720109477"
        ],
        "most_recent": true
       },
@@ -46,7 +46,7 @@
           "root-device-type": "ebs"
         },
         "owners": [
-          "amazon"
+          "099720109477"
         ],
         "most_recent": true
       },
