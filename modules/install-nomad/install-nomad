@@ -82,10 +82,20 @@ function install_dependencies {
 
   if $(has_apt_get); then
     sudo apt-get update -y
-    sudo apt-get install -y awscli curl unzip jq
+    sudo apt-get install -y awscli curl unzip jq default-jdk default-jre apt-transport-https ca-certificates gnupg lsb-release
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo \
+    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get install docker-ce docker-ce-cli containerd.io
+
   elif $(has_yum); then
     sudo yum update -y
-    sudo yum install -y aws curl unzip jq
+    sudo yum install -y aws curl unzip jq java-1.8.0-openjdk yum-utils
+    sudo yum-config-manager \
+      --add-repo \
+      https://download.docker.com/linux/centos/docker-ce.repo
+    sudo yum install docker-ce docker-ce-cli containerd.io
   else
     log_error "Could not find apt-get or yum. Cannot install dependencies on this OS."
     exit 1
